@@ -4,12 +4,12 @@ class math_fun:
         
     def verifica_primo(self):
         for e in self.lista:
-            if (self.__si_no_primo(e)):
+            if (self.__verifica_primo(e)):
                 print("El número ", e, " SI es número primo")
             else:
                 print("El número ", e , " NO es número primo")
 
-    def __si_no_primo(self, num):
+    def __verifica_primo(self, num):
         if num in [1, 2]:
             return True
         elif num < 1:
@@ -21,8 +21,6 @@ class math_fun:
                     cont += 1
                     break
             return cont <= 2
-        
-           
         
     def lis_repetidos1(self,mayor=True): # Mayor: True por mayor, False por menor.
         cont=1
