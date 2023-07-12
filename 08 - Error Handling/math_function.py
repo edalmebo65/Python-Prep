@@ -7,11 +7,13 @@ class math_function:
             self.lista = lista_numeros
         
     def verifica_primo(self):
-        for e in self.lista:
-            if (self.__verifica_primo(e)):
-                print("El número ", e, " SI es número primo")
+        lista_primos = []
+        for i in self.lista:
+            if (self.__verifica_primo(i)):
+                lista_primos.append(True)
             else:
-                print("El número ", e , " NO es número primo")
+                lista_primos.append(False)
+        return lista_primos
 
     def __verifica_primo(self, num):
         if num in [1, 2]:
@@ -44,11 +46,24 @@ class math_function:
                         num_acum = num
             cont=1
             num=""
-        print ('El Valor modal es ', num_acum, ' y se repite ', acum, ' veces')
+        #print ('El Valor modal es ', num_acum, ' y se repite ', acum, ' veces')
+        return num_acum, acum
     
     def convertir_grados(self, origen, destino):
-        for e in self.lista:
-            print(e, ' grados', origen, ' son ', self.__conversion_grados(e, origen, destino))
+        parametros_esperados = ['celsius','kelvin','farenheit']
+        lista_conversion = []
+        if str(origen) not in parametros_esperados:
+            print('Los parametros esperados son:', parametros_esperados)
+            return lista_conversion
+        if str(destino) not in parametros_esperados:
+            print('Los parametros esperados son:', parametros_esperados)
+            return lista_conversion
+        
+        ## for e in self.lista:
+        ##     print(e, ' grados', origen, ' son ', self.__conversion_grados(e, origen, destino))
+        for i in self.lista:
+            lista_conversion.append(self.__conversion_grados(i, origen, destino))
+        return lista_conversion
 
     def __conversion_grados(self,valor=0, origen=0, destino=0):
         '''Función que convierte entre grados celsius, farenheit y kelvin.
@@ -56,38 +71,42 @@ class math_function:
             se indica el tipo de 'origen' 0=celsius, 1= farenheit y 2=kelvin
             se indica el tipo de 'destino' 0=celsius, 1=farenheit y 2 =kelvin.
         '''
-        if origen == 'Celsius':  # Celsius
-            if destino== 'Celsius': # Celsius
-                return(valor, "grados Celsius")
-            elif destino=='Farenheit': # farenheit
+        if origen == 'celsius':  # Celsius
+            if destino== 'celsius': # Celsius
+                return(valor) ##, "grados Celsius")
+            elif destino=='farenheit': # farenheit
                 valor_c=round((valor*9/5)+32, 1)
-                return(valor_c, ' grados farenheit')
+                return(valor_c) ##, ' grados farenheit')
             else:   # kelvin
                 valor_c=round((valor+273.15), 1)
-                return(valor_c, ' grados kelvin')
+                return(valor_c) ##, ' grados kelvin')
                 
-        elif origen=='Farenheit': #Farenheit
-            if destino=='Celsius':   # Celsius
+        elif origen=='farenheit': #Farenheit
+            if destino=='celsius':   # Celsius
                 valor_c=round((valor + 32)/(9/5), 1)
-                return(valor_c, ' grados celsius')
-            elif destino=='Farenheit': # Farenheit
-                return(valor, ' grados farenheit')
+                return(valor_c) ##, ' grados celsius')
+            elif destino=='farenheit': # Farenheit
+                return(valor) ##, ' grados farenheit')
             else:   # Kelvin
                 valor_c =round((5/9)*valor - (160/9) + 273.15, 1)
-                return(valor_c, ' grados kelvin')
+                return(valor_c) ##, ' grados kelvin')
         else: # kelvin
-            if destino=='Celsius':   # Celsius
+            if destino=='celsius':   # Celsius
                 valor_c = round(valor-273.15,1)
-                return(valor_c, ' grados celsius')
-            elif destino=='Farenheit': # Farenheit
+                return(valor_c) ##, ' grados celsius')
+            elif destino=='farenheit': # Farenheit
                 valor_c = round(9*(valor +(160/9) - 273.15)/5, 1)
-                return(valor_c, ' grados farenheit')
+                return(valor_c) ##, ' grados farenheit')
             else:   # Kelvin   
-                return(valor, ' grados kelvin')
+                return(valor) ##, ' grados kelvin')
 
     def factorial(self):
-        for e in self.lista:
-            print("El factorial de ", e , ' es ', self.__factorial(e))
+        ##    for e in self.lista:
+        ##        print("El factorial de ", e , ' es ', self.__factorial(e))
+        lista_factorial = []
+        for i in self.lista:
+            lista_factorial.append(self.__factorial(i))
+        return lista_factorial
 
     def __factorial(self,nro):
         if (type(nro)==int and nro>0):
